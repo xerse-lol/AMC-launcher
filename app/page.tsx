@@ -1,103 +1,87 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { useState, useEffect } from "react"
+import { LauncherSidebar } from "@/components/launcher-sidebar"
+import { LauncherMain } from "@/components/launcher-main"
+import { LauncherProvider } from "@/components/launcher-provider"
+import { LauncherSettings } from "@/components/launcher-settings"
+import { LauncherSkins } from "@/components/launcher-skins"
+import { LauncherLogs } from "@/components/launcher-logs"
+import { LauncherMods } from "@/components/launcher-mods"
+import { LauncherShop } from "@/components/launcher-shop"
+import { cn } from "@/lib/utils"
+
+export default function LauncherPage() {
+  const [activeTab, setActiveTab] = useState("home")
+  const [isNight, setIsNight] = useState(false)
+
+  useEffect(() => {
+    const checkTime = () => {
+      const hour = new Date().getHours()
+      // Night is from 6 PM (18) to 6 AM (6)
+      setIsNight(hour >= 18 || hour < 6)
+    }
+
+    checkTime()
+    const interval = setInterval(checkTime, 60000) // Check every minute
+    return () => clearInterval(interval)
+  }, [])
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <LauncherProvider>
+      <main className="h-screen w-full flex overflow-hidden bg-zinc-950 relative">
+        {/* Background Image with Transition */}
+        <div 
+          className={cn(
+            "absolute inset-0 bg-cover bg-center transition-opacity duration-1000",
+            isNight ? "opacity-0" : "opacity-100"
+          )}
+          style={{ backgroundImage: 'url("/images/bg-day.png")' }}
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+        <div 
+          className={cn(
+            "absolute inset-0 bg-cover bg-center transition-opacity duration-1000",
+            isNight ? "opacity-100" : "opacity-0"
+          )}
+          style={{ backgroundImage: 'url("/images/bg-night.png")' }}
+        />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        {/* Overlay for better readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
+
+        {/* Content */}
+        <div className="relative z-10 flex w-full h-full">
+          <LauncherSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+
+          {activeTab === "home" && <LauncherMain />}
+          {activeTab === "shop" && <LauncherShop />}
+          {activeTab === "mods" && <LauncherMods />}
+          {activeTab === "settings" && <LauncherSettings />}
+          {activeTab === "skins" && <LauncherSkins />}
+
+          {activeTab !== "home" &&
+            activeTab !== "shop" &&
+            activeTab !== "mods" &&
+            activeTab !== "settings" &&
+            activeTab !== "skins" && (
+            <div className="flex-1 flex items-center justify-center">
+              <div className="bg-black/40 backdrop-blur-md border border-white/10 p-12 rounded-3xl text-center max-w-md">
+                <h2 className="text-3xl font-bold text-white mb-4 capitalize">{activeTab.replace("-", " ")}</h2>
+                <p className="text-white/60 mb-8">
+                  This section is currently under development. Stay tuned for updates!
+                </p>
+                <button 
+                  onClick={() => setActiveTab("home")}
+                  className="text-green-400 hover:text-green-300 font-medium transition-colors"
+                >
+                  Back to Home
+                </button>
+              </div>
+            </div>
+          )}
         </div>
+        <LauncherLogs />
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    </LauncherProvider>
+  )
 }

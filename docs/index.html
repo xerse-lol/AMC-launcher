@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AMC Launcher</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b0f1a;
+        --bg-alt: #0f172a;
+        --card: #0f172a;
+        --card-border: #1f2a44;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --accent: #38bdf8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        background:
+          radial-gradient(900px 500px at 70% -10%, rgba(56, 189, 248, 0.12), transparent),
+          radial-gradient(700px 400px at 10% 10%, rgba(59, 130, 246, 0.14), transparent),
+          var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 40px 20px;
+      }
+
+      .wrap {
+        width: min(960px, 100%);
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95));
+        border: 1px solid var(--card-border);
+        border-radius: 18px;
+        padding: 36px;
+        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(34, 197, 94, 0.2));
+        border: 1px solid rgba(56, 189, 248, 0.5);
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 28px;
+      }
+
+      p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin: 28px 0;
+      }
+
+      .card {
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid var(--card-border);
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: 16px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        color: var(--accent);
+        font-size: 12px;
+        letter-spacing: 0.2px;
+      }
+
+      footer {
+        border-top: 1px solid var(--card-border);
+        margin-top: 24px;
+        padding-top: 16px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <header>
+        <div class="logo">AMC</div>
+        <div>
+          <h1>AMC Launcher</h1>
+          <p>Lightweight Minecraft launcher focused on low end PCs and clean performance.</p>
+        </div>
+      </header>
+
+      <span class="tag">Status: Private alpha</span>
+
+      <div class="grid">
+        <section class="card">
+          <h3>Fast Setup</h3>
+          <p>Quick installs, version management, and auto Java detection.</p>
+        </section>
+        <section class="card">
+          <h3>Performance Presets</h3>
+          <p>Low end and potato modes to keep FPS stable on 4 GB systems.</p>
+        </section>
+        <section class="card">
+          <h3>Secure Login</h3>
+          <p>Microsoft and local accounts with simple switching.</p>
+        </section>
+        <section class="card">
+          <h3>Clean UI</h3>
+          <p>Simple layout inspired by modern launchers without the bloat.</p>
+        </section>
+      </div>
+
+      <footer>
+        AMC Launcher is a community project. Not affiliated with Mojang or Microsoft.
+      </footer>
+    </main>
+  </body>
+</html>
