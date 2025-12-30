@@ -29,13 +29,12 @@
           var(--bg);
         color: var(--text);
         min-height: 100vh;
-        display: grid;
-        place-items: center;
-        padding: 40px 20px;
+        padding: 40px 20px 80px;
       }
 
       .wrap {
         width: min(960px, 100%);
+        margin: 0 auto;
         background: linear-gradient(180deg, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95));
         border: 1px solid var(--card-border);
         border-radius: 18px;
@@ -67,10 +66,50 @@
         font-size: 28px;
       }
 
+      h2 {
+        margin: 28px 0 10px;
+        font-size: 20px;
+      }
+
+      h3 {
+        margin: 18px 0 8px;
+        font-size: 16px;
+      }
+
       p {
         margin: 8px 0 0;
         color: var(--muted);
         line-height: 1.6;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      ul {
+        margin: 8px 0 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      li {
+        margin: 6px 0;
+        line-height: 1.5;
+      }
+
+      code {
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 12px;
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid var(--card-border);
+        border-radius: 6px;
+        padding: 2px 6px;
+        color: var(--text);
       }
 
       .grid {
@@ -104,6 +143,49 @@
         letter-spacing: 0.2px;
       }
 
+      .toc {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 18px 0 26px;
+      }
+
+      .toc a {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        background: rgba(15, 23, 42, 0.6);
+        color: var(--text);
+        font-size: 12px;
+      }
+
+      .columns {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        margin: 16px 0;
+      }
+
+      .section-card {
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid var(--card-border);
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      .callout {
+        margin: 16px 0;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        background: rgba(56, 189, 248, 0.08);
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
       footer {
         border-top: 1px solid var(--card-border);
         margin-top: 24px;
@@ -120,11 +202,28 @@
         <div class="logo">AMC</div>
         <div>
           <h1>AMC Launcher</h1>
-          <p>Lightweight Minecraft launcher focused on low end PCs and clean performance.</p>
+          <p>Documentation and purpose for the AMC Launcher project.</p>
         </div>
       </header>
 
+      <div class="callout">
+        AMC Launcher is a lightweight Minecraft launcher built for low end PCs. The goal is to keep
+        RAM and CPU usage low while keeping the UI simple, fast, and clear to use.
+      </div>
+
       <span class="tag">Status: Private alpha</span>
+
+      <nav class="toc">
+        <a href="#purpose">Purpose</a>
+        <a href="#features">Features</a>
+        <a href="#requirements">Requirements</a>
+        <a href="#quickstart">Quick start</a>
+        <a href="#accounts">Accounts</a>
+        <a href="#performance">Performance</a>
+        <a href="#mods">Mods</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#roadmap">Roadmap</a>
+      </nav>
 
       <div class="grid">
         <section class="card">
@@ -144,6 +243,139 @@
           <p>Simple layout inspired by modern launchers without the bloat.</p>
         </section>
       </div>
+
+      <section id="purpose">
+        <h2>Purpose</h2>
+        <p>
+          AMC Launcher is designed for players on budget hardware who still want a clean, modern
+          launcher. The priority is stable performance, small downloads, and minimal background
+          usage.
+        </p>
+      </section>
+
+      <section id="features">
+        <h2>Features</h2>
+        <div class="columns">
+          <div class="section-card">
+            <h3>Version control</h3>
+            <ul>
+              <li>Install and launch official Minecraft versions.</li>
+              <li>Automatic library and asset downloads.</li>
+              <li>Clear launch logs for troubleshooting.</li>
+            </ul>
+          </div>
+          <div class="section-card">
+            <h3>Accounts</h3>
+            <ul>
+              <li>Microsoft sign-in for full online access.</li>
+              <li>Local profiles for offline testing.</li>
+              <li>Simple account switcher.</li>
+            </ul>
+          </div>
+          <div class="section-card">
+            <h3>Performance presets</h3>
+            <ul>
+              <li>Low-end mode tuned for 4-8 GB RAM systems.</li>
+              <li>Potato mode for extreme low spec devices.</li>
+              <li>Memory sliders with safe defaults.</li>
+            </ul>
+          </div>
+          <div class="section-card">
+            <h3>Content tools</h3>
+            <ul>
+              <li>Mods and resource pack management.</li>
+              <li>Skin library for local profiles.</li>
+              <li>Quick folder shortcuts.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="requirements">
+        <h2>System requirements</h2>
+        <div class="columns">
+          <div class="section-card">
+            <h3>Minimum</h3>
+            <ul>
+              <li>Windows 10 or 11</li>
+              <li>4 GB RAM</li>
+              <li>Integrated graphics</li>
+              <li>Java 17+ (21 recommended for newer versions)</li>
+            </ul>
+          </div>
+          <div class="section-card">
+            <h3>Recommended</h3>
+            <ul>
+              <li>8 GB RAM</li>
+              <li>SSD storage</li>
+              <li>Java 21</li>
+              <li>Updated GPU drivers</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="quickstart">
+        <h2>Quick start</h2>
+        <ol>
+          <li>Launch AMC Launcher.</li>
+          <li>Select a Minecraft version.</li>
+          <li>Pick your RAM range and presets.</li>
+          <li>Click <code>Launch</code>.</li>
+        </ol>
+      </section>
+
+      <section id="accounts">
+        <h2>Accounts</h2>
+        <p>
+          Microsoft login is required for online play. Local profiles are intended for offline
+          testing and singleplayer only.
+        </p>
+        <div class="callout">
+          New third-party launchers must be reviewed by Mojang to access the Java services APIs.
+          If Microsoft login fails with "Invalid app registration", submit the launcher client ID
+          to the official review form:
+          <a href="https://aka.ms/mce-reviewappid" rel="noopener noreferrer" target="_blank">
+            https://aka.ms/mce-reviewappid
+          </a>
+        </div>
+      </section>
+
+      <section id="performance">
+        <h2>Performance tuning</h2>
+        <ul>
+          <li>Use Low-end preset for smoother FPS on 4-8 GB systems.</li>
+          <li>Use Potato mode for maximum stability on very low specs.</li>
+          <li>Keep background apps closed to free RAM.</li>
+        </ul>
+      </section>
+
+      <section id="mods">
+        <h2>Mods and resource packs</h2>
+        <ul>
+          <li>Enable or disable mods directly in the launcher UI.</li>
+          <li>Use the quick folders to drop in new mods or packs.</li>
+          <li>Large modpacks may need higher RAM limits.</li>
+        </ul>
+      </section>
+
+      <section id="privacy">
+        <h2>Privacy and security</h2>
+        <ul>
+          <li>Login runs on Microsoft-hosted pages. No passwords are collected by AMC.</li>
+          <li>Tokens are stored locally and encrypted.</li>
+          <li>No telemetry is shared outside the launcher.</li>
+        </ul>
+      </section>
+
+      <section id="roadmap">
+        <h2>Roadmap</h2>
+        <ul>
+          <li>Better mod metadata and icons.</li>
+          <li>Expanded skin management for Microsoft accounts.</li>
+          <li>More graphics presets and auto tuning.</li>
+        </ul>
+      </section>
 
       <footer>
         AMC Launcher is a community project. Not affiliated with Mojang or Microsoft.
